@@ -21,7 +21,8 @@
                 "input": "projects/whois-task/public"
               }
             ],
-            "styles": ["projects/whois-task/src/styles.css"]
+            "styles": ["projects/whois-task/src/styles.css"],
+            "outputPath": "dist/whois-task"
           },
           "configurations": {
             "production": {
