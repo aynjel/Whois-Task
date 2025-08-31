@@ -1,0 +1,101 @@
+<form
+  [formGroup]="lookUpForm"
+  (ngSubmit)="onSubmit()"
+  class="max-w-md mx-auto mt-10 p-6 bg-base-200 rounded-lg shadow-md space-y-4"
+>
+  <h2 class="text-xl font-bold text-center text-base-content">Domain Lookup</h2>
+
+  <div class="form-control">
+    <label for="domainName" class="label">
+      <span class="label-text">Domain Name</span>
+    </label>
+    <input
+      id="domainName"
+      formControlName="domainName"
+      [readOnly]="isLoading()"
+      type="text"
+      placeholder="e.g. example.com"
+      class="input input-bordered w-full"
+    />
+  </div>
+
+  <div class="form-control">
+    <label for="informationType" class="label">
+      <span class="label-text">Information Type</span>
+    </label>
+    <select
+      id="informationType"
+      formControlName="informationType"
+      (change)="onInformationTypeChange($event)"
+      class="select select-bordered w-full"
+    >
+      <option disabled selected>Select type</option>
+      @for (type of informationTypes; track type) {
+      <option [value]="type">{{ type | titlecase }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="form-control mt-4">
+    <button
+      type="submit"
+      [disabled]="isLoading()"
+      class="btn btn-primary w-full"
+    >
+      Lookup
+    </button>
+  </div>
+</form>
+
+<div class="mt-6">
+  @if (!isLoading()){ @switch (selectedInformationType()) { @case ('contact') {
+  <table class="table table-zebra w-full bg-base-100 rounded-lg shadow-md">
+    <thead class="bg-base-200 text-base-content">
+      <tr>
+        <th>Registrant Name</th>
+        <th>Technical Contact Name</th>
+        <th>Administrative Contact Name</th>
+        <th>Contact Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ contactInformation()?.registrantName }}</td>
+        <td>{{ contactInformation()?.technicalContactName }}</td>
+        <td>{{ contactInformation()?.administrativeContactName }}</td>
+        <td>{{ contactInformation()?.contactEmail }}</td>
+      </tr>
+    </tbody>
+  </table>
+  } @case ('domain') {
+  <table class="table table-zebra w-full bg-base-100 rounded-lg shadow-md">
+    <thead class="bg-base-200 text-base-content">
+      <tr>
+        <th>Domain Name</th>
+        <th>Registrar</th>
+        <th>Registration Date</th>
+        <th>Expiration Date</th>
+        <th>Estimated Domain Age</th>
+        <th>Hostnames</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ domainInformation()?.domainName }}</td>
+        <td>{{ domainInformation()?.registrar }}</td>
+        <td>{{ domainInformation()?.registrationDate }}</td>
+        <td>{{ domainInformation()?.expirationDate }}</td>
+        <td>{{ domainInformation()?.estimatedDomainAge }}</td>
+        <td>
+          @for (hostname of domainInformation()?.hostnames; track hostname) {
+          {{ hostname }}, }
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  } @default {
+  <p class="text-center text-base-content">
+    Please select an information type and perform a lookup.
+  </p>
+  } } }
+</div>

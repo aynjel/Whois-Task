@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "0/tlco9obIw=",
   "success": true,
-  "projectFilePath": "D:\\Repo\\whois-task\\API\\API.csproj",
+  "projectFilePath": "D:\\Repo\\whois-task\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anggi\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.8\\microsoft.aspnetcore.openapi.9.0.8.nupkg.sha512",
     "C:\\Users\\Anggi\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",

@@ -5,7 +5,7 @@ namespace API.Models.DTO;
 
 public class WhoisResponseDto
 {
-  [JsonProperty("WhoisRecord")]
+  [JsonProperty("whoisRecord")]
   public WhoisRecord WhoisRecord { get; set; }
 }
 
@@ -25,6 +25,19 @@ public class NameServers
   public string rawText { get; set; }
   public HostNames hostNames { get; set; }
   public object ips { get; set; }
+}
+
+public class AdministrativeContact
+{
+  public string name { get; set; }
+  public string street1 { get; set; }
+  public string city { get; set; }
+  public string state { get; set; }
+  public string postalCode { get; set; }
+  public string country { get; set; }
+  public string countryCode { get; set; }
+  public string telephone { get; set; }
+  public string rawText { get; set; }
 }
 
 public class Registrant
@@ -82,6 +95,7 @@ public class WhoisRecord
   public DateTime createdDate { get; set; }
   public DateTime updatedDate { get; set; }
   public DateTime expiresDate { get; set; }
+  public AdministrativeContact administrativeContact { get; set; }
   public Registrant registrant { get; set; }
   public TechnicalContact technicalContact { get; set; }
   public string domainName { get; set; }
