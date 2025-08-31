@@ -1,87 +1,106 @@
+using Newtonsoft.Json;
+
 namespace API.Models.DTO;
+
 
 public class WhoisResponseDto
 {
-  public DateTime? CreatedDate { get; set; }
-  public DateTime? UpdatedDate { get; set; }
-  public DateTime? ExpiresDate { get; set; }
-  public ContactInfo Registrant { get; set; }
-  public ContactInfo AdministrativeContact { get; set; }
-  public ContactInfo TechnicalContact { get; set; }
-  public string DomainName { get; set; }
-  public NameServers NameServers { get; set; }
-  public string Status { get; set; }
-  public string RawText { get; set; }
-  public int ParseCode { get; set; }
-  public string Header { get; set; }
-  public string StrippedText { get; set; }
-  public string Footer { get; set; }
-  public AuditInfo Audit { get; set; }
-  public string CustomField1Name { get; set; }
-  public string CustomField1Value { get; set; }
-  public string CustomField2Name { get; set; }
-  public string CustomField2Value { get; set; }
-  public string CustomField3Name { get; set; }
-  public string CustomField3Value { get; set; }
-  public string RegistrarName { get; set; }
-  public string RegistrarIANAID { get; set; }
-  public string CreatedDateNormalized { get; set; }
-  public string UpdatedDateNormalized { get; set; }
-  public string ExpiresDateNormalized { get; set; }
-  public RegistryData RegistryData { get; set; }
-  public string DomainAvailability { get; set; }
-  public string ContactEmail { get; set; }
-  public string DomainNameExt { get; set; }
-  public int EstimatedDomainAge { get; set; }
-  public List<string> Ips { get; set; }
+  [JsonProperty("WhoisRecord")]
+  public WhoisRecord WhoisRecord { get; set; }
 }
 
-public class ContactInfo
+public class Audit
 {
-  public string Organization { get; set; }
-  public string State { get; set; }
-  public string Country { get; set; }
-  public string CountryCode { get; set; }
-  public string RawText { get; set; }
+  public string createdDate { get; set; }
+  public string updatedDate { get; set; }
+}
+
+public class HostNames
+{
+  public List<string> Address { get; set; }
 }
 
 public class NameServers
 {
-  public string RawText { get; set; }
-  public List<string> HostNames { get; set; }
-  public List<string> Ips { get; set; }
+  public string rawText { get; set; }
+  public HostNames hostNames { get; set; }
+  public object ips { get; set; }
 }
 
-public class AuditInfo
+public class Registrant
 {
-  public string CreatedDate { get; set; }
-  public string UpdatedDate { get; set; }
+  public string name { get; set; }
+  public string street1 { get; set; }
+  public string city { get; set; }
+  public string state { get; set; }
+  public string postalCode { get; set; }
+  public string country { get; set; }
+  public string countryCode { get; set; }
+  public string telephone { get; set; }
+  public string rawText { get; set; }
 }
 
 public class RegistryData
 {
-  public DateTime? CreatedDate { get; set; }
-  public DateTime? UpdatedDate { get; set; }
-  public DateTime? ExpiresDate { get; set; }
-  public string DomainName { get; set; }
-  public NameServers NameServers { get; set; }
-  public string Status { get; set; }
-  public string RawText { get; set; }
-  public int ParseCode { get; set; }
-  public string Header { get; set; }
-  public string StrippedText { get; set; }
-  public string Footer { get; set; }
-  public AuditInfo Audit { get; set; }
-  public string CustomField1Name { get; set; }
-  public string CustomField1Value { get; set; }
-  public string RegistrarName { get; set; }
-  public string RegistrarIANAID { get; set; }
-  public string CreatedDateNormalized { get; set; }
-  public string UpdatedDateNormalized { get; set; }
-  public string ExpiresDateNormalized { get; set; }
-  public string CustomField2Name { get; set; }
-  public string CustomField2Value { get; set; }
-  public string CustomField3Name { get; set; }
-  public string CustomField3Value { get; set; }
-  public string WhoisServer { get; set; }
+  public DateTime createdDate { get; set; }
+  public DateTime updatedDate { get; set; }
+  public DateTime expiresDate { get; set; }
+  public string domainName { get; set; }
+  public NameServers nameServers { get; set; }
+  public string status { get; set; }
+  public string rawText { get; set; }
+  public string parseCode { get; set; }
+  public object header { get; set; }
+  public string strippedText { get; set; }
+  public object footer { get; set; }
+  public Audit audit { get; set; }
+  public string registrarName { get; set; }
+  public string registrarIANAID { get; set; }
+  public string createdDateNormalized { get; set; }
+  public string updatedDateNormalized { get; set; }
+  public string expiresDateNormalized { get; set; }
+  public string whoisServer { get; set; }
 }
+
+public class Root
+{
+  public WhoisRecord WhoisRecord { get; set; }
+}
+
+public class TechnicalContact
+{
+  public string name { get; set; }
+  public string country { get; set; }
+  public string countryCode { get; set; }
+  public string email { get; set; }
+  public string telephone { get; set; }
+  public string rawText { get; set; }
+}
+
+public class WhoisRecord
+{
+  public DateTime createdDate { get; set; }
+  public DateTime updatedDate { get; set; }
+  public DateTime expiresDate { get; set; }
+  public Registrant registrant { get; set; }
+  public TechnicalContact technicalContact { get; set; }
+  public string domainName { get; set; }
+  public NameServers nameServers { get; set; }
+  public string status { get; set; }
+  public string rawText { get; set; }
+  public string parseCode { get; set; }
+  public object header { get; set; }
+  public string strippedText { get; set; }
+  public object footer { get; set; }
+  public Audit audit { get; set; }
+  public string registrarName { get; set; }
+  public string registrarIANAID { get; set; }
+  public string createdDateNormalized { get; set; }
+  public string updatedDateNormalized { get; set; }
+  public string expiresDateNormalized { get; set; }
+  public RegistryData registryData { get; set; }
+  public string contactEmail { get; set; }
+  public string domainNameExt { get; set; }
+  public string estimatedDomainAge { get; set; }
+}
+

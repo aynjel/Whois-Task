@@ -20,8 +20,9 @@ public class WhoisService(IConfiguration configuration) : IWhoisService
     var xmlContent = await response.Content.ReadAsStringAsync();
     XmlDocument doc = new XmlDocument();
     doc.LoadXml(xmlContent);
-    string convertToJson = JsonConvert.SerializeXmlNode(doc.DocumentElement, Newtonsoft.Json.Formatting.Indented, true);
+    var json = JsonConvert.SerializeXmlNode(doc.DocumentElement, Newtonsoft.Json.Formatting.Indented);
+    var whoisResponse = JsonConvert.DeserializeObject<WhoisResponseDto>(json);
 
-    return convertToJson;
+    return whoisResponse ?? throw new Exception("Failed to deserialize response");
   }
 }
