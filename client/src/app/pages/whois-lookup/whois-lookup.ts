@@ -75,8 +75,8 @@ export class WhoisLookup {
             technicalContact,
             administrativeContact,
             registrarName,
-            domainName,
             registryData,
+            domainName,
           } = response.whoisRecord;
 
           this.contactInformation.set({
